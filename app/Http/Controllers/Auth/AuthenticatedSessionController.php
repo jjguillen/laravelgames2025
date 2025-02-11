@@ -28,7 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if (strcmp($request->user()->role, "admin") == 0 ) {
+            return redirect()->intended(route('dashboard', absolute: false));
+        }
+        return redirect()->intended(route('games.index', absolute: false));
     }
 
     /**
