@@ -5,7 +5,11 @@
 ## Game Lists
 
 ### To do
-- Panel admin
+- Hacer componentes para juegos y listas en la parte web
+- Panel admin con componentes:
+- - Crear, editar y borrar juegos
+- - Autorizar comentarios pendientes, eliminar comentarios
+- - Eliminar usuarios
 - Borrar tu propio comentario
 - Aprobar comentarios en el admin, y que solo se muestren los aprobados
 - Crear políticas:
@@ -13,3 +17,8 @@
 - - Solo puedes borrar una lista tuya
 - - Solo puedes añadir juegos a una lista tuya
 - - Solo puedes borrar juegos de una lista tuya
+- API con Sanctum
+- - Generar token en profile
+- - Ver listas de usuario
+- - Añadir, eliminar lista de usuario
+- - Añadir, eliminar juego a lista de usuario

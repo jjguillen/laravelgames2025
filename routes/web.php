@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameListController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +26,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/games', [GameController::class, 'indexA'] )->name('admin.games.index');
+    Route::get('/dashboard/users', [RegisteredUserController::class, 'indexA'] )->name('admin.users.index');
+    Route::get('/dashboard/reviews', [ReviewController::class, 'indexA'] )->name('admin.reviews.index');
 
 
 
