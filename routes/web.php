@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GameListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +35,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth'])->group( function () {
     Route::get('/games', [GameController::class, 'index'] )->name('games.index');
     Route::get('/games/{game}', [GameController::class, 'show'] )->name('games.show');
+    Route::post('/games/review/{game}', [GameController::class, 'review'] )->name('games.review');
 
-
+    Route::get('/lists', [GameListController::class, 'index'] )->name('lists.index');
+    Route::post('/lists/store', [GameListController::class, 'store'] )->name('lists.store');
+    Route::get('/lists/{list}', [GameListController::class, 'show'] )->name('lists.show');
+    Route::get('/lists/delete/{list}', [GameListController::class, 'destroy'] )->name('lists.destroy');
+    Route::get('/lists/showtoadd/{game}', [GameListController::class, 'showtoadd'] )->name('lists.showtoadd');
+    Route::get('/lists/addgame/{list}/{game}', [GameListController::class, 'addGameToList'] )->name('lists.addgame');
+    Route::get('/lists/removegame/{list}/{game}', [GameListController::class, 'removeGameFromList'] )->name('lists.removegame');
 });
 
 
