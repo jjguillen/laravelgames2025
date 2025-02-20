@@ -5,6 +5,7 @@
 ## Game Lists
 
 ### To do
+- Que no deje añadir el mismo juego en la misma lista
 - Hacer componentes para juegos y listas en la parte web
 - Panel admin con componentes:
 - - Crear, editar y borrar juegos

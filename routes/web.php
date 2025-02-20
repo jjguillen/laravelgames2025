@@ -5,6 +5,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Generar token API
+    Route::post('/tokens/create', function (Request $request) {
+        $token = $request->user()->createToken($request->token_name);
+
+        return ['token' => $token->plainTextToken];
+    });
 });
 
 

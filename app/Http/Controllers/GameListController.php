@@ -67,6 +67,11 @@ class GameListController extends Controller
         //Política para comprobar que la lista es del usuario autenticado
         Gate::authorize('addGame', $list);
 
+        //Comprobar que el juego no esté ya en la lista
+        if ($list->games->contains($game)) {
+            return redirect()->route('lists.show', ['list' => $list->id]);
+        }
+
         $list->games()->attach($game);
         return redirect()->route('lists.show', ['list' => $list->id]);
     }
