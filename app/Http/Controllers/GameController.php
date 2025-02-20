@@ -80,6 +80,12 @@ class GameController extends Controller
 
     public function review(Request $request, Game $game)
     {
+        //Comprobamos que el usuario esté registrado
+        if ($request->user()->cannot('create', Review::class)) {
+            abort(403);
+        }
+
+        //Comprobamos si el usuario ya ha hecho una review
         if ($game->reviews->where('user_id', auth()->id())->first() != null) {
             return redirect()->route('games.show', $game);
         } else {

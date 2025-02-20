@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\GameList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class GameListController extends Controller
 {
@@ -45,9 +47,7 @@ class GameListController extends Controller
 
     public function destroy(GameList $list)
     {
-        if ($list->user_id !== auth()->id()) {
-            abort(403);
-        }
+        Gate::authorize('delete', $list);
 
         $list->delete();
 
@@ -65,6 +65,7 @@ class GameListController extends Controller
 
     public function addGameToList(GameList $list, Game $game) {
         //Política para comprobar que la lista es del usuario autenticado
+        Gate::authorize('addGame', $list);
 
         $list->games()->attach($game);
         return redirect()->route('lists.show', ['list' => $list->id]);
@@ -72,6 +73,7 @@ class GameListController extends Controller
 
     public function removeGameFromList(GameList $list, Game $game) {
         //Política para comprobar que la lista es del usuario autenticado
+        Gate::authorize('deleteGame', $list);
 
         $list->games()->detach($game);
         return redirect()->route('lists.show', ['list' => $list->id]);
