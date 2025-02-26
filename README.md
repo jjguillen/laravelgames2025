@@ -10,7 +10,4 @@
 - - Eliminar usuarios
 - Borrar tu propio comentario
 - Aprobar comentarios en el admin, y que solo se muestren los aprobados
-- 
-- API con Sanctum
-- - Añadir, eliminar lista de usuario
-- - Añadir, eliminar juego a lista de usuario
+

@@ -15,5 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/lists', 'App\Http\Controllers\ApiController@index');
     Route::post('/lists', 'App\Http\Controllers\ApiController@store');
     Route::delete('/lists/{list}', 'App\Http\Controllers\ApiController@destroy');
+    Route::get('/lists/{list}/games/{game}', 'App\Http\Controllers\ApiController@addGame');
+    Route::delete('/lists/{list}/games/{game}', 'App\Http\Controllers\ApiController@removeGame');
 
 });
