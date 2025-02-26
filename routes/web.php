@@ -18,11 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //Generar token API
-    Route::post('/tokens/create', function (Request $request) {
-        $token = $request->user()->createToken($request->token_name);
-
+    Route::get('/tokens/create', function () {
+        $token = auth()->user()->createToken(auth()->user()->email);
         return ['token' => $token->plainTextToken];
-    });
+    })->name('generate.token');
 });
 
 
